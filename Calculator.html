@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body class="container mt-4">
+
+  <form class="form">
+    <label class="form-label">Valor A</label>
+    <input class="form-control mb-2" type="number" id="v1"/>
+
+    <label class="form-label">Valor B</label>
+    <input class="form-control mb-2" type="number" id="v2"/>
+
+    <label class="form-label">Operação</label>
+    <select class="form-select mb-3" id="oper">
+      <option>Soma</option>
+      <option>Subtração</option>
+      <option>Multiplicação</option>
+      <option>Divisão</option>
+      <option>Potência</option>
+    </select>
+
+    <button type="button" class="btn btn-primary" onclick="executar()">Executar</button>
+  </form>
+
+  <div class="alert alert-success mt-3" id="resp">O resultado aparece aqui</div>
+
+  <script>
+    function somar(a, b) { return a + b; }
+    function subtrair(a, b) { return a - b; }
+    function multiplicar(a, b) { return a * b; }
+    function dividir(a, b) { return a / b; }
+    function exponencial(a, b) { return a ** b; }
+
+    const executar = () => {
+      const a = parseFloat(document.getElementById("v1").value);
+      const b = parseFloat(document.getElementById("v2").value);
+      const oper = document.getElementById("oper").selectedIndex;
+
+      let resultado = (oper === 0) ? somar(a, b) :
+                      (oper === 1) ? subtrair(a, b) :
+                      (oper === 2) ? multiplicar(a, b) :
+                      (oper === 3) ? dividir(a, b) :
+                                     exponencial(a, b);
+
+      document.getElementById("resp").innerHTML = `O resultado da operação é ${resultado}`;
+    }
+  </script>
+
+</body>
+</html>
